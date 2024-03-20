@@ -2,9 +2,9 @@
 
 public class ProcessDemo
 {
-    private readonly Demo demo;
+    private readonly IDemo demo;
 
-    public ProcessDemo(Demo demo)
+    public ProcessDemo(IDemo demo)
     {
         this.demo = demo;
     }
