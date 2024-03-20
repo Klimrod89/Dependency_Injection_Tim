@@ -14,7 +14,7 @@ public class ProcessDemo
         return demo.StartupTime.Month switch
         {
             1 => 31,
-            2 => 28,
+            2 => IsLeapYear(demo.StartupTime) ? 29 : 28,
             3 => 31,
             4 => 30,
             5 => 31,
@@ -27,5 +27,14 @@ public class ProcessDemo
             12 => 31,
             _ => throw new IndexOutOfRangeException()
         };
+    }
+
+    public bool IsLeapYear(DateTime dateTime)
+    {
+        bool output = true;
+        int year = dateTime.Year;
+        if(year % 4 != 0) return false;
+        if(year % 100 == 0 && year % 400 != 0) return false;
+        return output;
     }
 }

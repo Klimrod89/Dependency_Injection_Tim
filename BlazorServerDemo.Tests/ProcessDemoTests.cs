@@ -1,29 +1,52 @@
 
-namespace BlazorServerDemo.Tests;
-
-public class ProcessDemoTests
+namespace BlazorServerDemo.Tests
 {
-    [Fact]
-    public void GetDaysInMonth_ShouldReturnProperNumberForLeapYear()
+    /// <summary>
+    /// Represents a test class for the <see cref="ProcessDemo"/> class.
+    /// </summary>
+    public class ProcessDemoTests
     {
-        TestingDemo t = new(DateTime.Parse("2/1/2000"));
-        ProcessDemo p = new(t);
+        /// <summary>
+        /// Tests the <see cref="ProcessDemo.GetDaysInMonth"/> method to ensure it returns the proper number of days for a leap year.
+        /// </summary>
+        /// <param name="dateTime">The input date and time.</param>
+        /// <param name="expected">The expected number of days in the month.</param>
+        [Theory]
+        [InlineData("2023/03/10", 31)]
+        [InlineData("2024/02/10", 29)]
+        [InlineData("2000/02/10", 29)]
+        [InlineData("2400/02/10", 29)]
+        [InlineData("1900/02/10", 28)]
+        [InlineData("1800/02/10", 28)]
+        [InlineData("1700/02/10", 28)]
+        public void GetDaysInMonth_ShouldReturnProperNumberForLeapYear(DateTime dateTime, int expected)
+        {
+            TestingDemo t = new(dateTime);
+            ProcessDemo p = new(t);
 
-        int expected = 29;
+            int actual = p.GetDaysInMonth();
 
-        int actual = p.GetDaysInMonth();
-
-        Assert.Equal(expected, actual);
+            Assert.Equal(expected, actual);
+        }
     }
 
-}
-
-public class TestingDemo : IDemo
-{
-    public DateTime StartupTime { get; init; }
-
-    public TestingDemo(DateTime startupTime)
+    /// <summary>
+    /// Represents a testing demo class that implements the <see cref="IDemo"/> interface.
+    /// </summary>
+    public class TestingDemo : IDemo
     {
-        StartupTime = startupTime;
+        /// <summary>
+        /// Gets or sets the startup time.
+        /// </summary>
+        public DateTime StartupTime { get; init; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestingDemo"/> class.
+        /// </summary>
+        /// <param name="startupTime">The startup time.</param>
+        public TestingDemo(DateTime startupTime)
+        {
+            StartupTime = startupTime;
+        }
     }
 }
