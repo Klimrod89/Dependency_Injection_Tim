@@ -1,6 +1,6 @@
 namespace BlazorServerDemo;
 
-public interface IDemo
+public interface IUtcDemo: IDemo
 {
     DateTime StartupTime { get; init;}
 }

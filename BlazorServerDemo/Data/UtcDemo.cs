@@ -1,6 +1,6 @@
 ﻿namespace BlazorServerDemo;
 
-public class UtcDemo : IDemo
+public class UtcDemo :  IUtcDemo
 {
     public DateTime StartupTime { get; init; }
     public UtcDemo()
