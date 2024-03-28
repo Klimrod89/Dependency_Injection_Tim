@@ -14,4 +14,12 @@
 @foreach(var item in demos)
 {
     <h2>Demo: @item.StartupTime.ToString("hh:mm:ss fffffff")</h2>
+    if(item is ILocalDemo) 
+    {
+        <h2>Local Demo: @item.StartupTime.ToString("hh:mm:ss ffffff")</h2>
+    }
+    if(item is IUtcDemo) 
+    {
+        <h2>UTC Demo: @item.StartupTime.ToString("hh:mm:ss ffffff")</h2>
+    }
 }
